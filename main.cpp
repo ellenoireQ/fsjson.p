@@ -49,6 +49,11 @@ int main(int argc, char *argv[]) {
           .description = "Output file path",
           .handler = [](Context &c, auto value) { c.outputPath = *value; }},
 
+      cli{.names = {"--pid", "-p"},
+          .type = ArgType::VALUE,
+          .description = "Specify PID for reading /proc",
+          .handler = [](Context &c, auto value) { c.pid = *value; }},
+
       cli{.names = {"--help", "-h"},
           .type = ArgType::FLAG,
           .description = "Show this help message",
@@ -73,6 +78,7 @@ int main(int argc, char *argv[]) {
   cout << "Parsed context:\n";
   cout << "  reading: " << (ctx.reading ? "true" : "false") << "\n";
   cout << "  proc: " << (ctx.proc ? "true" : "false") << "\n";
+  cout << "  pid: " << ctx.pid << "\n";
   if (!ctx.procFile.empty()) {
     cout << "  procFile: " << ctx.procFile << "\n";
   }

@@ -29,6 +29,7 @@
 struct Context {
   bool reading = false;
   bool proc = false;
+  std::string pid;
   std::string procFile;
   std::string outputPath;
   bool showHelp = false;
