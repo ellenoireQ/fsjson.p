@@ -17,7 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "regex/filesystem.h"
+#include "regex/helper.h"
 #include "regex/read_cli.h"
 #include "version.h"
 #include <format>
@@ -96,8 +96,20 @@ int main(int argc, char *argv[]) {
   cout << "  proc: " << (ctx.proc ? "true" : "false") << "\n";
   cout << "  pid: " << ctx.pid << "\n";
   FileSystem fs;
-  if (ctx.procFile == "comm") {
-    fs.read_proc(Proc::COMM, std::stoi(ctx.pid));
+  Helper help;
+
+  if (ctx.json) {
+    switch (help.stringToEnum(ctx.procFile)) {
+    case Proc::COMM:
+      fs.read_proc(Proc::COMM, std::stoi(ctx.pid));
+      break;
+    case Proc::CMDLINE:
+      break;
+    case Proc::STATE:
+      break;
+    default:
+      break;
+    }
   }
   if (!ctx.procFile.empty()) {
     cout << "  procFile: " << ctx.procFile << "\n";
