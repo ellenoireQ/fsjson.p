@@ -1,5 +1,6 @@
 CXX=g++
-CXXFLAGS= -Wall -Wextra -std=c++20 -MMD -MP
+APP_COMMIT := $(shell git describe --dirty --always)
+CXXFLAGS= -Wall -Wextra -std=c++20 -MMD -MP -DAPP_COMMIT=\"$(APP_COMMIT)\"
 TARGET=main
 SOURCES = main.cpp
 OBJECTS = $(SOURCES:.cpp=.o)

@@ -4,4 +4,3 @@
 #define APP_VERSION "1.0.0"
 #define APP_YEAR "2026"
 #define APP_AUTHOR "EllenoireQ"
-#define APP_COMMIT "92dd9a2"
