@@ -18,6 +18,7 @@
  */
 
 #include "regex/read_cli.h"
+#include "version.h"
 #include <format>
 #include <optional>
 #include <string>
@@ -54,6 +55,11 @@ int main(int argc, char *argv[]) {
           .description = "Specify PID for reading /proc",
           .handler = [](Context &c, auto value) { c.pid = *value; }},
 
+      cli{.names = {"--version", "-v"},
+          .type = ArgType::FLAG,
+          .description = "Show version",
+          .handler = [](Context &c, auto) { c.showVersion = true; }},
+
       cli{.names = {"--help", "-h"},
           .type = ArgType::FLAG,
           .description = "Show this help message",
@@ -70,6 +76,10 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  if (ctx.showVersion) {
+    CommandLineInterface::printVersion();
+    return 1;
+  }
   if (ctx.showHelp) {
     CommandLineInterface::printHelp(args);
     return 0;

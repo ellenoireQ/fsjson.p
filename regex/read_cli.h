@@ -18,14 +18,15 @@
  */
 
 #pragma once
+#include "../version.h"
 #include <algorithm>
+#include <format>
 #include <functional>
 #include <initializer_list>
 #include <iostream>
 #include <optional>
 #include <string>
 #include <vector>
-
 struct Context {
   bool reading = false;
   bool proc = false;
@@ -33,6 +34,7 @@ struct Context {
   std::string procFile;
   std::string outputPath;
   bool showHelp = false;
+  bool showVersion = false;
 };
 
 enum class ArgType { FLAG, VALUE, POSITIONAL };
@@ -85,6 +87,21 @@ public:
     return true;
   }
 
+  static void printVersion() {
+    std::cout
+        << APP_NAME << " " << ""
+        << std::format("({}-{})", APP_VERSION, APP_COMMIT)
+        << "\n"
+           "Copyright (C) "
+        << APP_YEAR << " " << APP_AUTHOR
+        << "\n\n"
+           "This program is free software: you can redistribute it and/or "
+           "modify\n"
+           "it under the terms of the GNU General Public License as published "
+           "by\n"
+           "the Free Software Foundation, either version 3 of the License, or\n"
+           "(at your option) any later version.\n";
+  }
   static void printHelp(std::initializer_list<cli> args) {
     std::cout << "Usage: main [OPTIONS]\n\n";
     std::cout << "Options:\n";
