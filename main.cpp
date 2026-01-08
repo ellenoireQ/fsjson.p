@@ -19,11 +19,7 @@
 
 #include "regex/helper.h"
 #include "regex/read_cli.h"
-#include "version.h"
-#include <format>
-#include <optional>
 #include <string>
-#include <vector>
 
 using namespace std;
 
@@ -91,10 +87,6 @@ int main(int argc, char *argv[]) {
     return 0;
   }
 
-  cout << "Parsed context:\n";
-  cout << "  reading: " << (ctx.reading ? "true" : "false") << "\n";
-  cout << "  proc: " << (ctx.proc ? "true" : "false") << "\n";
-  cout << "  pid: " << ctx.pid << "\n";
   FileSystem fs;
   Helper help;
 
@@ -110,12 +102,6 @@ int main(int argc, char *argv[]) {
     default:
       break;
     }
-  }
-  if (!ctx.procFile.empty()) {
-    cout << "  procFile: " << ctx.procFile << "\n";
-  }
-  if (!ctx.outputPath.empty()) {
-    cout << "  outputPath: " << ctx.outputPath << "\n";
   }
 
   // TODO: Next Implementation

@@ -51,7 +51,6 @@ public:
 
       if (inputFile.is_open()) {
         while (std::getline(inputFile, line)) {
-          std::cout << line << std::endl;
           ns::comm p = {line};
           j["comm"] = p.comm;
         }
