@@ -17,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "regex/filesystem.h"
 #include "regex/read_cli.h"
 #include "version.h"
 #include <format>
@@ -89,6 +90,10 @@ int main(int argc, char *argv[]) {
   cout << "  reading: " << (ctx.reading ? "true" : "false") << "\n";
   cout << "  proc: " << (ctx.proc ? "true" : "false") << "\n";
   cout << "  pid: " << ctx.pid << "\n";
+  FileSystem fs;
+  if (ctx.procFile == "comm") {
+    fs.read_proc(Proc::COMM, std::stoi(ctx.pid));
+  }
   if (!ctx.procFile.empty()) {
     cout << "  procFile: " << ctx.procFile << "\n";
   }
