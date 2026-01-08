@@ -56,6 +56,11 @@ int main(int argc, char *argv[]) {
           .description = "Specify PID for reading /proc",
           .handler = [](Context &c, auto value) { c.pid = *value; }},
 
+      cli{.names = {"--json", "-j"},
+          .type = ArgType::FLAG,
+          .description = "Display/Print to json",
+          .handler = [](Context &c, auto) { c.json = true; }},
+
       cli{.names = {"--version", "-v"},
           .type = ArgType::FLAG,
           .description = "Show version",
