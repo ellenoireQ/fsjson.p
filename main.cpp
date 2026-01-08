@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
   if (ctx.json) {
     switch (help.stringToEnum(ctx.procFile)) {
     case Proc::COMM:
-      fs.read_proc(Proc::COMM, std::stoi(ctx.pid));
+      fs.read_proc(Proc::COMM, std::stoi(ctx.pid), ctx.json);
       break;
     case Proc::CMDLINE:
       break;
@@ -102,6 +102,8 @@ int main(int argc, char *argv[]) {
     default:
       break;
     }
+  } else if (!ctx.json) {
+    fs.read_proc(Proc::COMM, std::stoi(ctx.pid), ctx.json);
   }
 
   // TODO: Next Implementation

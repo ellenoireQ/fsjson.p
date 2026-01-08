@@ -38,7 +38,7 @@ using namespace nlohmann;
 class FileSystem {
 public:
   inline static json j;
-  static void read_proc(Proc proc, int pid = 0) {
+  static void read_proc(Proc proc, int pid = 0, bool jsonMode = false) {
     switch (proc) {
     case Proc::CMDLINE:
       break;
@@ -51,15 +51,20 @@ public:
 
       if (inputFile.is_open()) {
         while (std::getline(inputFile, line)) {
-          ns::comm p = {line};
-          j["comm"] = p.comm;
+          if (jsonMode) {
+            ns::comm p = {line};
+            j["comm"] = p.comm;
+          } else {
+            std::cout << line << std::endl;
+          }
         }
         inputFile.close();
       } else {
         std::cerr << "Unable to open file for reading." << std::endl;
       }
 
-      std::cout << j.dump(4) << std::endl;
+      if (jsonMode)
+        std::cout << j.dump(4) << std::endl;
       break;
     }
   }
