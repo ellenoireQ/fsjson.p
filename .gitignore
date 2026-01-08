@@ -1,3 +1,6 @@
 main
 main.d
 main.o
+
+# ignore build folder
+build
