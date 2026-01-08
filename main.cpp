@@ -30,12 +30,12 @@ int main(int argc, char *argv[]) {
   CommandLineInterface commandline;
 
   auto args = {
-      cli{.names = {"--read", "-r"},
+      cli{.names = {"read", "r"},
           .type = ArgType::FLAG,
           .description = "Enable reading mode",
           .handler = [](Context &c, auto) { c.reading = true; }},
 
-      cli{.names = {"--proc", "-p"},
+      cli{.names = {"proc", "p"},
           .type = ArgType::VALUE,
           .description = "Specify proc file (cmdline, comm, state)",
           .handler =
