@@ -24,7 +24,7 @@ A lightweight and fast Command Line Interface (CLI) tool for parsing filesystem 
 - **Flexible Output** - Output to console or save to file
 
 ## Usage
-
+![Warning: Need Sudo](https://img.shields.io/badge/warning-sudo%20needed%20to%20access%20/proc%20-critical)
 ```bash
 # Show help message
 ./main --help
