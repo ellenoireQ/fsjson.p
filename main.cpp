@@ -111,6 +111,15 @@ int main(int argc, char *argv[]) {
       }
       break;
     case Proc::CMDLINE:
+      if (ctx.self) {
+        pid.self = ctx.self;
+        fs.read_proc(Proc::CMDLINE, ctx.json, pid);
+        break;
+      } else {
+        pid.pid = std::stoi(ctx.pid);
+        fs.read_proc(Proc::CMDLINE, ctx.json, pid);
+      }
+
       break;
     case Proc::STATE:
       break;

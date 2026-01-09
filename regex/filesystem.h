@@ -31,6 +31,9 @@ namespace ns {
 struct comm {
   std::string comm;
 };
+struct cmdline {
+  std::string cmdline;
+};
 } // namespace ns
 
 using namespace nlohmann;
@@ -39,18 +42,46 @@ class FileSystem {
 public:
   inline static json j;
   static void read_proc(Proc proc, bool jsonMode = false, Pid pid = {}) {
-    auto format = std::format("/proc/{}/comm", "self");
-    auto saved_pid = "";
-    if (pid.self)
-      saved_pid = "self";
 
     switch (proc) {
-    case Proc::CMDLINE:
-      break;
-    case Proc::STATE:
+    case Proc::CMDLINE: {
+      auto format = std::format("/proc/{}/cmdline", "self");
+      auto saved_pid = "";
+      if (pid.self)
+        saved_pid = "self";
 
+      if (!pid.self)
+        format = std::format("/proc/{}/cmdline", pid.pid);
+
+      std::ifstream inputFile(format);
+      std::string line;
+
+      if (inputFile.is_open()) {
+        while (std::getline(inputFile, line)) {
+          if (jsonMode) {
+            ns::cmdline p = {line};
+            j["cmdline"] = p.cmdline;
+          } else {
+            std::cout << line << std::endl;
+          }
+        }
+        inputFile.close();
+      } else {
+        std::cerr << "Unable to open file for reading." << std::endl;
+      }
+
+      if (jsonMode)
+        std::cout << j.dump(4) << std::endl;
+      break;
+    }
+    case Proc::STATE:
       break;
     case Proc::COMM:
+      auto format = std::format("/proc/{}/comm", "self");
+      auto saved_pid = "";
+      if (pid.self)
+        saved_pid = "self";
+
       if (!pid.self)
         format = std::format("/proc/{}/comm", pid.pid);
 
