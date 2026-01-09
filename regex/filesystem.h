@@ -25,6 +25,7 @@
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
+#include <string>
 
 namespace ns {
 struct comm {
@@ -38,6 +39,11 @@ class FileSystem {
 public:
   inline static json j;
   static void read_proc(Proc proc, bool jsonMode = false, Pid pid = {}) {
+    auto format = std::format("/proc/{}/comm", "self");
+    auto saved_pid = "";
+    if (pid.self)
+      saved_pid = "self";
+
     switch (proc) {
     case Proc::CMDLINE:
       break;
@@ -45,7 +51,9 @@ public:
 
       break;
     case Proc::COMM:
-      auto format = std::format("/proc/{}/comm", pid.pid);
+      if (!pid.self)
+        format = std::format("/proc/{}/comm", pid.pid);
+
       std::ifstream inputFile(format);
       std::string line;
 

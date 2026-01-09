@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
           .handler = [](Context &c, auto value) { c.outputPath = *value; }},
 
       cli{.names = {"--self", "-se"},
-          .type = ArgType::VALUE,
+          .type = ArgType::FLAG,
           .description = "Specify PID to self",
           .handler = [](Context &c, auto value) { c.self = true; }},
 
@@ -95,16 +95,18 @@ int main(int argc, char *argv[]) {
 
   FileSystem fs;
   Helper help;
-  Pid pid;
+  Pid pid = {};
 
   if (ctx.json) {
-    pid.pid = std::stoi(ctx.pid);
+
     switch (help.stringToEnum(ctx.procFile)) {
     case Proc::COMM:
-      if (!ctx.self) {
+      if (ctx.self) {
+        pid.self = ctx.self;
         fs.read_proc(Proc::COMM, ctx.json, pid);
+        break;
       } else {
-        pid.self = true;
+        pid.pid = std::stoi(ctx.pid);
         fs.read_proc(Proc::COMM, ctx.json, pid);
       }
       break;
@@ -116,6 +118,11 @@ int main(int argc, char *argv[]) {
       break;
     }
   } else if (!ctx.json) {
+    if (ctx.self) {
+      pid.self = ctx.self;
+      fs.read_proc(Proc::COMM, ctx.json, pid);
+      return 0;
+    }
     pid.pid = std::stoi(ctx.pid);
     fs.read_proc(Proc::COMM, ctx.json, pid);
   }
