@@ -6,4 +6,8 @@
 #define APP_YEAR "2026"
 #define APP_AUTHOR "EllenoireQ"
 
+#ifndef APP_COMMIT
+#define APP_COMMIT "unknown"
+#endif
+
 #endif // FSJSON_VERSION_H
