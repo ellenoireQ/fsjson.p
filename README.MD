@@ -1,4 +1,4 @@
-![logo](docs/logo.png)
+<img src='docs/logo.svg' alt="diagram" width="400">
 
 ![Cpp](https://img.shields.io/badge/c++-%2300599C?style=flat&logo=cplusplus&logoColor=white)
 ![Cmake](https://img.shields.io/badge/Cmake-%2300599C?style=flat&logo=cmake&logoColor=white)
