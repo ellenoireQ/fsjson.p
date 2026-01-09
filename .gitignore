@@ -4,3 +4,4 @@ main.o
 
 # ignore build folder
 build
+build-android
