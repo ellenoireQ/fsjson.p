@@ -1,13 +1,15 @@
 ![logo](docs/logo.png)
 
-![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white)
-![Makefile](https://img.shields.io/badge/Makefile-%23008FBA.svg?style=for-the-badge&logo=makefile&logoColor=white)
+![Cpp](https://img.shields.io/badge/c++-%2300599C?style=flat&logo=cplusplus&logoColor=white)
+![Cmake](https://img.shields.io/badge/Cmake-%2300599C?style=flat&logo=cmake&logoColor=white)
+![make](https://img.shields.io/badge/makefile-%2300599C?style=flat&logo=makefile&logoColor=white)
+![ninja](https://img.shields.io/badge/ninja-%2300599C?style=flat&logo=ninja&logoColor=white)
+![ninja](https://img.shields.io/badge/Android%20Ndk-%2300599C?style=flat&logo=ninja&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-34A853?style=flat&logo=android&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)
-![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D7?style=flat&logo=windows&logoColor=white)
-![Version](https://img.shields.io/badge/windows?style=flat&logo=1.0.0&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)
+
 
 # FileSystem Json Parser
 
