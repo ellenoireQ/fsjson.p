@@ -48,6 +48,11 @@ int main(int argc, char *argv[]) {
           .description = "Output file path",
           .handler = [](Context &c, auto value) { c.outputPath = *value; }},
 
+      cli{.names = {"--self", "-se"},
+          .type = ArgType::VALUE,
+          .description = "Specify PID to self",
+          .handler = [](Context &c, auto value) { c.self = true; }},
+
       cli{.names = {"--pid", "-p"},
           .type = ArgType::VALUE,
           .description = "Specify PID for reading /proc",
@@ -90,11 +95,18 @@ int main(int argc, char *argv[]) {
 
   FileSystem fs;
   Helper help;
+  Pid pid;
 
   if (ctx.json) {
+    pid.pid = std::stoi(ctx.pid);
     switch (help.stringToEnum(ctx.procFile)) {
     case Proc::COMM:
-      fs.read_proc(Proc::COMM, std::stoi(ctx.pid), ctx.json);
+      if (!ctx.self) {
+        fs.read_proc(Proc::COMM, ctx.json, pid);
+      } else {
+        pid.self = true;
+        fs.read_proc(Proc::COMM, ctx.json, pid);
+      }
       break;
     case Proc::CMDLINE:
       break;
@@ -104,7 +116,8 @@ int main(int argc, char *argv[]) {
       break;
     }
   } else if (!ctx.json) {
-    fs.read_proc(Proc::COMM, std::stoi(ctx.pid), ctx.json);
+    pid.pid = std::stoi(ctx.pid);
+    fs.read_proc(Proc::COMM, ctx.json, pid);
   }
 
   // TODO: Next Implementation

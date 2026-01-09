@@ -63,13 +63,13 @@ cmake -B build && cmake --build build
 ### Android
 ```bash
 # Android NDK Path
-export ANDROID_NDK=/path/to/android-ndk
+export ANDROID_NDK_HOME=/path/to/android-ndk
 
 # arm64-v8a
-cmake -B build-android \
-  -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake \
-  -DANDROID_ABI=arm64-v8a \
-  -DANDROID_PLATFORM=android-24
+cmake -S . -B build-android \
+            -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+            -DANDROID_ABI=arm64-v8a \
+            -DANDROID_PLATFORM=android-33
 
 # Build
 cmake --build build-android

@@ -35,6 +35,7 @@ struct Context {
   std::string pid;
   std::string procFile;
   std::string outputPath;
+  bool self = false;
   bool json = false;
   bool showHelp = false;
   bool showVersion = false;

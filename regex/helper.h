@@ -30,6 +30,11 @@ enum Proc {
   COMM,
 };
 
+struct Pid {
+  bool self;
+  int pid = 0;
+};
+
 class Helper {
 public:
   static int stringToEnum(std::string str) {

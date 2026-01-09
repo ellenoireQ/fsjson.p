@@ -37,7 +37,7 @@ using namespace nlohmann;
 class FileSystem {
 public:
   inline static json j;
-  static void read_proc(Proc proc, int pid = 0, bool jsonMode = false) {
+  static void read_proc(Proc proc, bool jsonMode = false, Pid pid = {}) {
     switch (proc) {
     case Proc::CMDLINE:
       break;
@@ -45,7 +45,7 @@ public:
 
       break;
     case Proc::COMM:
-      auto format = std::format("/proc/{}/comm", pid);
+      auto format = std::format("/proc/{}/comm", pid.pid);
       std::ifstream inputFile(format);
       std::string line;
 
