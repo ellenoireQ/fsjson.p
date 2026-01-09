@@ -17,7 +17,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "filesystem.h"
+#ifndef FSJSON_HELPER_H
+#define FSJSON_HELPER_H
+
+#include <fstream>
+#include <string>
+#include <unordered_map>
+
+enum Proc {
+  CMDLINE,
+  STATE,
+  COMM,
+};
+
 class Helper {
 public:
   static int stringToEnum(std::string str) {
@@ -31,3 +43,5 @@ public:
     return 0;
   }
 };
+
+#endif // FSJSON_HELPER_H

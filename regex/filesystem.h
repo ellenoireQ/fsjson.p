@@ -16,16 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+#ifndef FSJSON_FILESYSTEM_H
+#define FSJSON_FILESYSTEM_H
+
+#include "helper.h"
 #include <format>
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
-
-enum Proc {
-  CMDLINE,
-  STATE,
-  COMM,
-};
 
 namespace ns {
 struct comm {
@@ -43,6 +42,7 @@ public:
     case Proc::CMDLINE:
       break;
     case Proc::STATE:
+
       break;
     case Proc::COMM:
       auto format = std::format("/proc/{}/comm", pid);
@@ -69,3 +69,5 @@ public:
     }
   }
 };
+
+#endif // FSJSON_FILESYSTEM_H

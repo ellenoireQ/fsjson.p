@@ -17,7 +17,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#ifndef FSJSON_READ_CLI_H
+#define FSJSON_READ_CLI_H
+
 #include "../version.h"
 #include <algorithm>
 #include <format>
@@ -124,3 +126,5 @@ public:
     }
   }
 };
+
+#endif // FSJSON_READ_CLI_H
