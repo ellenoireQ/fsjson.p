@@ -42,7 +42,7 @@ public:
       return Proc::COMM;
     } else if (str == "cmdline") {
       return Proc::CMDLINE;
-    } else if (str == "state") {
+    } else if (str == "status") {
       return Proc::STATUS;
     }
     return 0;

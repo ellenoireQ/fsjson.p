@@ -74,8 +74,47 @@ public:
         std::cout << j.dump(4) << std::endl;
       break;
     }
-    case Proc::STATUS:
+    case Proc::STATUS: {
+      auto format = std::format("/proc/{}/status", "self");
+      auto saved_pid = "";
+      if (pid.self)
+        saved_pid = "self";
+
+      if (!pid.self)
+        format = std::format("/proc/{}/status", pid.pid);
+
+      std::ifstream inputFile(format);
+      std::string line;
+
+      if (inputFile.is_open()) {
+        while (std::getline(inputFile, line)) {
+          if (jsonMode) {
+            auto pos = line.find(':');
+            if (pos != std::string::npos) {
+              std::string key = line.substr(0, pos);
+              std::string value = line.substr(pos + 1);
+
+              key.erase(0, key.find_first_not_of(" \t"));
+              key.erase(key.find_last_not_of(" \t") + 1);
+              value.erase(0, value.find_first_not_of(" \t"));
+              value.erase(value.find_last_not_of(" \t") + 1);
+
+              j[key] = value;
+            }
+          } else {
+            std::cout << line << std::endl;
+          }
+        }
+        inputFile.close();
+      } else {
+        std::cerr << "Unable to open file for reading." << std::endl;
+      }
+
+      if (jsonMode) {
+        std::cout << j.dump(4) << std::endl;
+      }
       break;
+    }
     case Proc::COMM:
       auto format = std::format("/proc/{}/comm", "self");
       auto saved_pid = "";

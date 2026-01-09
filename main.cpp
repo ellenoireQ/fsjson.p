@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 
       cli{.names = {"proc", "p"},
           .type = ArgType::VALUE,
-          .description = "Specify proc file (cmdline, comm, state)",
+          .description = "Specify proc file (cmdline, comm, status)",
           .handler =
               [](Context &c, auto value) {
                 c.proc = true;
@@ -122,6 +122,14 @@ int main(int argc, char *argv[]) {
 
       break;
     case Proc::STATUS:
+      if (ctx.self) {
+        pid.self = ctx.self;
+        fs.read_proc(Proc::STATUS, ctx.json, pid);
+        break;
+      } else {
+        pid.pid = std::stoi(ctx.pid);
+        fs.read_proc(Proc::STATUS, ctx.json, pid);
+      }
       break;
     default:
       break;
