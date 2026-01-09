@@ -26,7 +26,7 @@
 
 enum Proc {
   CMDLINE,
-  STATE,
+  STATUS,
   COMM,
 };
 
@@ -43,7 +43,7 @@ public:
     } else if (str == "cmdline") {
       return Proc::CMDLINE;
     } else if (str == "state") {
-      return Proc::STATE;
+      return Proc::STATUS;
     }
     return 0;
   }

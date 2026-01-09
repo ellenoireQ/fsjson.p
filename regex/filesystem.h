@@ -74,7 +74,7 @@ public:
         std::cout << j.dump(4) << std::endl;
       break;
     }
-    case Proc::STATE:
+    case Proc::STATUS:
       break;
     case Proc::COMM:
       auto format = std::format("/proc/{}/comm", "self");

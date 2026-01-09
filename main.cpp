@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
       }
 
       break;
-    case Proc::STATE:
+    case Proc::STATUS:
       break;
     default:
       break;
