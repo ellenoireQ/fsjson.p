@@ -7,7 +7,6 @@
 ![ninja](https://img.shields.io/badge/Android%20Ndk-%2300599C?style=flat&logo=ninja&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-34A853?style=flat&logo=android&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)
-![Windows](https://img.shields.io/badge/Windows-0078D7?style=flat&logo=windows&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)
 
 
@@ -81,6 +80,5 @@ cmake --build build-android
 # Desktop
 make 
 ```
-
-
-### This Documentation/Project under development (WIP)
+## License
+This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details.
