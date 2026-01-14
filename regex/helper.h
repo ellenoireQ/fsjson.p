@@ -24,11 +24,7 @@
 #include <string>
 #include <unordered_map>
 
-enum Proc {
-  CMDLINE,
-  STATUS,
-  COMM,
-};
+enum Proc { CMDLINE, STATUS, COMM, SCHED };
 
 struct Pid {
   bool self;
@@ -44,6 +40,8 @@ public:
       return Proc::CMDLINE;
     } else if (str == "status") {
       return Proc::STATUS;
+    } else if (str == "sched") {
+      return Proc::SCHED;
     }
     return 0;
   }
